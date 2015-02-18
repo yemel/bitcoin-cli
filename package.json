@@ -1,6 +1,6 @@
 {
   "name": "bitcoin-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A command line interface for bitcoind",
   "main": "index.js",
   "bin": "./bin/bitcoin-cli",

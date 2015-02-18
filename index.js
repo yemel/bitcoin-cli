@@ -44,8 +44,16 @@ var client = new RpcClient(config);
 var method = args._.length > 0 && args._[0];
 if (!method || !client[method]) return showHelp('Invalid RPC method');
 
-var params = args._.slice(1).concat(onResponse);
+var params = args._.slice(1).map(parseJSON).concat(onResponse);
 client[method].apply(client, params);
+
+function parseJSON(arg) {
+  try {
+    return JSON.parse(arg);
+  } catch (err) {
+    return arg;
+  }
+}
 
 function onResponse(err, data) {
   if (err) return console.log(err.message);
